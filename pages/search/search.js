@@ -20,20 +20,22 @@ Page({
         icon:'none'
       })
     }
-    this.getCount()
-    this.getDevice()
+    this.getSet()
   },
-  getCount(){
-    utils.getCount(this.data.search_type,this.data.search_thing)
+  // 一套getCount+getDevcie的组合拳
+  async getSet(){
+    await utils.getCount(this.data.search_type,this.data.search_thing)
     .then(
       (value)=>{
         this.setData({
           count:value
         })
         if(this.data.count===0){
-          return wx.showToast({
-            title: '未匹配到设备',
-            icon:'error'
+          return new Promise(()=>{
+            wx.showToast({
+              title: '未匹配到设备',
+              icon:'error'
+            }) 
           })
         }
       },
@@ -42,6 +44,22 @@ Page({
           title: '数据请求失败，错误信息：'+reason,
           icon:'none'
         })
+      }
+    )
+    await utils.getDevice(this.data.search_type,this.data.search_thing,this.data.page)
+    .then(
+      (value)=>{
+        this.setData({
+          deviceList:[...this.data.deviceList,...value]
+        })
+      },
+      (reason)=>{
+        return new Promise(()=>{
+          wx.showToast({
+            title: '数据请求失败，响应代码:'+reason,
+            icon:'none'
+          })
+        }) 
       }
     )
   },
@@ -54,9 +72,11 @@ Page({
         })
       },
       (reason)=>{
-        return wx.showToast({
-          title: '数据请求失败，响应代码:'+reason,
-          icon:'none'
+        return new Promise(()=>{
+          wx.showToast({
+            title: '数据请求失败，响应代码:'+reason,
+            icon:'none'
+          })
         })
       }
     )

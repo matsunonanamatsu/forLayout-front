@@ -11,22 +11,23 @@ Page({
     this.setData({
       search_thing:options.title
     })
-    this.getCount()
-    this.getDevice()
+    this.getSet()
   },
-  // 请求该车间设备的数量
-  getCount(){
-    utils.getCount('area',this.data.search_thing)
+  // 一套getCount+getDevcie的组合拳
+  async getSet(){
+    await utils.getCount('area',this.data.search_thing)
     .then(
       (value)=>{
         this.setData({
           count:value
         })
         if(this.data.count===0){
-          return wx.showToast({
-            title: '暂无该车间数据',
-            icon:'error'
-          })
+          return new Promise(()=>{
+            wx.showToast({
+              title: '暂无该车间数据',
+              icon:'error'
+            })
+          }) 
         }
       },
       (reason)=>{
@@ -36,8 +37,23 @@ Page({
         })
       }
     )
+    await utils.getDevice('area',this.data.search_thing,this.data.page)
+    .then(
+      (value)=>{
+        this.setData({
+          deviceList:[...this.data.deviceList,...value]
+        })
+      },
+      (reason)=>{
+        return new Promise(()=>{
+          wx.showToast({
+            title: '数据请求失败，响应代码:'+reason,
+            icon:'none'
+          })
+        })
+      }
+    )
   },
-  // 请求该车间设备的详细信息
   getDevice(){
     utils.getDevice('area',this.data.search_thing,this.data.page)
     .then(

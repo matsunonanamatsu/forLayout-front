@@ -1,5 +1,3 @@
-const { get } = require("mobx-miniprogram")
-
 const baseUrl='http://192.168.0.178:5001/'
 function getDevice(search_type,search_thing,page){
   return new Promise((resolve,reject)=>{
@@ -33,6 +31,9 @@ function getDevice(search_type,search_thing,page){
 
 function getCount(search_type,search_thing){
   return new Promise((resolve,reject)=>{
+    wx.showLoading({
+      title: '数据请求中',
+    })
     wx.request({
       url: baseUrl+'getCount',
       method:'GET',
@@ -49,6 +50,9 @@ function getCount(search_type,search_thing){
       },
       fail:(err)=>{
         reject(err.errMsg)
+      },
+      complete:(res)=>{
+        wx.hideLoading()
       }
     })
   })
@@ -68,6 +72,7 @@ function getAllDevice(search_type,search_thing){
       },
       success:(res)=>{
         if(res.statusCode>=200 && res.statusCode<300){
+
           resolve(res.data)
         }else{
           reject(res.statusCode)
