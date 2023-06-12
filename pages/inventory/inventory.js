@@ -3,7 +3,28 @@ const utils=require('../../utils/utils')
 Page({
   data: {
     show:true,
-    deviceList:[]
+    deviceList:[],
+    okList:[],
+    ngList:[],
+    doneCount:0
+  },
+
+  ok(e){
+    const targetIndex=e.target.dataset.index
+    const changeTarget="deviceList["+targetIndex+"].selected"
+    this.setData({
+      [changeTarget]:true,
+      okList:[...this.data.okList,targetIndex],
+      doneCount:this.data.doneCount+1
+    })
+  },
+  ng(e){
+    const targetIndex=e.target.dataset.index
+    const changeTarget="deviceList["+targetIndex+"].selected"
+    this.setData({
+      [changeTarget]:true,
+      ngList:[...this.data.ngList,targetIndex]
+    })
   },
 // 关闭弹窗
   onClose(){

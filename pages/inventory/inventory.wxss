@@ -1,5 +1,62 @@
-/* pages/inventory/inventory.wxss */
-.checkbox{
+.topArea{
+  top:0;
+  width: 100%;
+  position:sticky;
+  z-index: 1;
+  background-color: white;
+  display: inline-flex;
+  justify-content: space-around;
+  background-color: lightyellow;
+}
+.checkBox{
+  width:750rpx;
+  height:220rpx;
+  display: flex;
+  margin-bottom:10rpx;
+
+}
+.allWidth{
+  width:950rpx;
+  height:200rpx;
+  display: flex;
+  flex-wrap: nowrap;
+  justify-content: space-around;
+  /* padding:10rpx */
+}
+.left{
+  width:750rpx;
+  height:200rpx;
   display:flex;
+  border: 1rpx solid silver;
+  box-shadow: gray 1rpx 1rpx 7rpx;
+  padding:10rpx;
+}
+.right {
+  width:200rpx;
+  height:226rpx;
+  display: flex;
+}
+button{
+  border-radius: 0px;
+  line-height: 226rpx;
+  text-align: center;
+}
+.photo{
+  height:200rpx;
+  width:200rpx;
+  background-color:gray;
+  line-height: 200rpx;
+  text-align: center;
+}
+.info{
+  display: flex;
   flex-direction: column;
+  justify-content: space-around;
+  margin-left: 20rpx;
+  font-size: 25rpx;
+  font-weight: bold;
+}
+.detail{
+  color:gray;
+  font-weight: lighter;
 }

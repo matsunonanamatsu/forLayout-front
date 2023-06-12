@@ -42,6 +42,13 @@
           "query": "",
           "launchMode": "default",
           "scene": null
+        },
+        {
+          "name": "",
+          "pathName": "pages/inventory/inventory",
+          "query": "",
+          "launchMode": "default",
+          "scene": null
         }
       ]
     }
