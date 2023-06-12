@@ -1,0 +1,29 @@
+<view class="topArea">
+  <!-- 搜索类型区 -->
+  <radio-group class="select" bindchange="getSearchType">
+    <radio value="sap_number" checked>固资编号查询</radio>
+    <radio value="device_type">设备类型查询</radio>
+    <radio value="device_name">设备名称查询</radio>
+  </radio-group>
+<!-- 搜索框区 -->
+  <view class="search">
+    <input bindconfirm="matchDevice" bindinput="setInput" value="{{search_thing}}"
+    type="text" placeholder="请输入需要查找的信息" confirm-type="search"></input>
+      <icon type="search" bindtap="matchDevice" class="picture" style="margin-left: auto;"></icon>
+  </view>
+</view>
+
+
+<!-- 内容展示区 -->
+<view class="box" wx:for="{{deviceList}}" wx:key="id">
+  <navigator url="/pages/detail/detail?device_id={{item.id}}&device_name={{item.device_name}}"><view class='photo'>设备图片</view>
+  </navigator>
+  <view class="info">
+    <view>{{index+1}}. <text class="detail">{{item.device_name}}</text></view>
+    <view>SAP编号：<text class="detail">{{item.sap_number}}</text></view>
+    <view>设备类型：<text class="detail">{{item.device_type}}</text></view>
+    <view>入账价值：<text class="detail">{{item.device_value}}元</text></view>
+    <view>折旧区间：<text class="detail">{{item.start_day}}~{{item.end_day}}</text></view>
+    <view>存放地点：<text class="detail">{{item.area}}</text></view>
+  </view>
+</view>

@@ -1,0 +1,8 @@
+<view class="popbox">
+  <view>请选择职场：</view>
+  <picker value="{{index}}" range="{{areaList}}"
+    bindchange="areaChange">
+      <view class="selected">{{areaList[index] || '请选择'}}<image class="down" src='/static/down.png'></image></view>
+  </picker>
+  <button bindtap="getDevice" type="primary" size="mini">确认</button>
+</view>

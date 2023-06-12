@@ -1,0 +1,14 @@
+<van-popup show="{{ show }}" bind:close="onClose" position="top">
+  <selectArea bind:getAllDevice="getAllDevice" bind:onClose="onClose"></selectArea>
+</van-popup>
+
+<checkbox-group class="checkbox">
+  <label wx:for="{{deviceList}}" wx:key="id">
+  <view>
+    <checkbox value="{{item.id}}" checked="{{item.selected}}"/>
+    <view>{{item.device_name}}</view>
+    <view>{{item.sap_number}}</view>
+  </view>
+   
+  </label>
+</checkbox-group>

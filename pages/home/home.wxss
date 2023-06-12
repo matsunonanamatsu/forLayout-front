@@ -1,0 +1,9 @@
+.homeindex{
+  height:200rpx;
+  line-height: 200rpx;
+  text-align: center;
+  border:1rpx solid gray;
+  margin-top:20rpx;
+  box-shadow:gray 1rpx 1rpx 10rpx;
+  background-color: beige;
+}

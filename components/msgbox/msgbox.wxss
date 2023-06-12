@@ -1,0 +1,24 @@
+/* components/msgbox.wxss */
+
+.deviceMsg{
+  height:100rpx;
+  display:flex;
+  /* margin-left:30rpx; */
+  justify-content: center;
+}
+.inputBox{
+  border:1px solid silver;
+  border-radius: 5px;
+  width:500rpx;
+}
+image{
+  margin-top: 3px;
+  margin-right:3px;
+  width:15px;
+  height:15px;
+  float:right;
+}
+.button{
+  color:purple;
+  justify-content: center;
+}

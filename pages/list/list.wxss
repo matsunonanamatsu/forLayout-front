@@ -1,0 +1,27 @@
+.box{
+  display: flex;
+  padding:15rpx;
+  border:1px solid gray;
+  margin-bottom: 10rpx;
+  box-shadow: gray 1rpx 1rpx 7rpx ;
+
+}
+.photo{
+  height:200rpx;
+  width:200rpx;
+  background-color:gray;
+  line-height: 200rpx;
+  text-align: center;
+}
+.info{
+  display: flex;
+  flex-direction: column;
+  justify-content: space-around;
+  margin-left: 20rpx;
+  font-size: 25rpx;
+  font-weight: bold;
+}
+.detail{
+  color:gray;
+  font-weight: lighter;
+}

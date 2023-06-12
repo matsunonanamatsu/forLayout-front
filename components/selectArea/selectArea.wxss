@@ -1,0 +1,23 @@
+/* components/selectArea/selectArea.wxss */
+.popbox{
+  display:flex;
+  flex-direction: column;
+  flex-wrap: wrap;
+  margin:20rpx;
+  height:300rpx;
+  justify-content: space-around;
+}
+.selected{
+  padding:10rpx;
+  width:400rpx;
+  border:1rpx solid gray;
+  border-radius: 20rpx;
+  display:flex;
+}
+.down{
+  height:50rpx;
+  width:50rpx;
+  margin-left:auto;
+}
+
+

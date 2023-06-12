@@ -1,0 +1,18 @@
+{
+  "pages": [
+    "pages/home/home",
+    "pages/index/index",
+    "pages/list/list",
+    "pages/drag/drag",
+    "pages/detail/detail",
+    "pages/search/search",
+    "pages/inventory/inventory"
+  ],
+  "window": {
+    "backgroundTextStyle": "light",
+    "navigationBarBackgroundColor": "#fff",
+    "navigationBarTitleText": "固定资产台账",
+    "navigationBarTextStyle": "black"
+  },
+  "sitemapLocation": "sitemap.json"
+}

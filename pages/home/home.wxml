@@ -1,0 +1,10 @@
+<navigator url="/pages/search/search">
+  <view class="homeindex">直接查找</view>
+</navigator>
+<navigator url="/pages/index/index">
+  <view class="homeindex">按职场分类</view>
+</navigator>
+<navigator url="/pages/inventory/inventory">
+  <view class="homeindex">固定资产盘点</view>
+</navigator>
+<view bindtap="waitMe" class="homeindex">查看布局图</view>

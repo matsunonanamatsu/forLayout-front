@@ -1,0 +1,5 @@
+/* pages/inventory/inventory.wxss */
+.checkbox{
+  display:flex;
+  flex-direction: column;
+}
