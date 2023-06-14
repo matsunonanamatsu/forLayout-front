@@ -67,33 +67,6 @@ Page({
       }
     )
   },
-  // touchStart(e){
-  //   const idx=e.currentTarget.dataset.idx
-  //   const startX="deviceList["+idx+"].startX"
-  //   this.setData({
-  //     [startX]:e.changedTouches[0].pageX
-  //   })
-  // },
-  // touchEnd(e){
-  //   const idx=e.currentTarget.dataset.idx
-  //   const endX="deviceList["+idx+"].endX"
-  //   this.setData({
-  //     [endX]:e.changedTouches[0].pageX
-  //   })
-  //   // distance:end-start移动的距离
-  //   const distance=this.data.deviceList[idx].endX-this.data.deviceList[idx].startX
-  //   // position_x：为movable-view定位
-  //   const position_x="deviceList["+idx+"].position_x"
-  //   // 左拉30以上全显示
-  //   switch(true){
-  //     case (distance<=-30):
-  //       this.setData({[position_x]:-1000})
-  //       break;
-  //     case (distance>-30):
-  //       this.setData({[position_x]:0})
-  //       break;
-  //   }
-  // },
   dragend(e){
     const idx=e.target.dataset.idx
         // distance:end-start移动的距离

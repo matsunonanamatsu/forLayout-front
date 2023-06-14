@@ -10,28 +10,6 @@
   <text>异常设备：{{ngList.length}}</text>
 </view>
 <!-- 滑滑乐区 -->
-<movable-area wx:if="{{!item.selected}}" class="{{!item.getout ? 'checkBox':'checkBoxOut'}}" wx:for="{{deviceList}}" wx:key="id">
-  <movable-view class="allWidth"  x="{{item.position_x}}" data-idx="{{index}}"
-    out-of-bounds="true" direction="horizontal" damping="500"
-    bindtouchstart="touchStart" bindtouchend="touchEnd"
-   >
-    <view class="left">
-      <navigator url="/pages/detail/detail?device_id={{item.id}}&device_name={{item.device_name}}"><view class='photo'>设备图片</view>
-      </navigator>
-      <view class="info">
-        <view>{{index+1}}. <text class="detail">{{item.device_name}}</text></view>
-        <view>SAP编号：<text class="detail">{{item.sap_number}}</text></view>
-        <view>设备类型：<text class="detail">{{item.device_type}}</text></view>
-        <view>入账价值：<text class="detail">{{item.device_value}}元</text></view>
-        <view>折旧区间：<text class="detail">{{item.start_day}}~{{item.end_day}}</text></view>
-      </view>
-    </view>
-    <view class="right">
-      <button type="primary" bindtap="ok"  data-index="{{index}}">OK</button>
-      <button type="warn" bindtap="ng"  data-index="{{index}}">NG</button>
-    </view>
-  </movable-view>
-</movable-area>
 <scroll-view scroll-x="true" enable-flex="true" show-scrollbar="{{false}}" enhanced="true" enable-passive="true"
   wx:for="{{deviceList}}" wx:key="id" data-idx="{{index}}"
   binddragend="dragend" scroll-left="{{item.position_x}}"
