@@ -8,11 +8,13 @@
   justify-content: space-around;
 }
 .selected{
-  padding:10rpx;
+  height:70rpx;
   width:400rpx;
   border:1rpx solid gray;
   border-radius: 20rpx;
   display:flex;
+  align-items: center;
+  padding-left: 10rpx;
 }
 .down{
   height:50rpx;

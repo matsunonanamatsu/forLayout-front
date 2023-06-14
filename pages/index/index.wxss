@@ -1,27 +1,27 @@
-
 .areaTitle{
-  background-color: rgb(181, 234, 255);
+  background-color: rgb(64, 146, 179);
   width:100%;
   height:100rpx;
   line-height: 100rpx;
   font-weight: bold;
   text-align: center;
   margin-top:20rpx;
+  border:1rpx solid black;
 }
-.box{
+.selectedBox{
   display: flex;
   flex-wrap:wrap;
-  /* white-space: nowrap; */
 }
 .areaItem{
-  width:33.33%;
+  width:230rpx;
   height:200rpx;
   display:flex;
-  flex-direction: column;
+  flex-direction: row;
   align-items: center;
   justify-content: center;
-  border:10rpx solid white;
+  border:1rpx solid black;
   background-color: rgb(201, 201, 201);
   box-sizing: border-box;
-  border-radius: 20px;
+  border-radius: 20rpx;
+  margin:10rpx;
 }

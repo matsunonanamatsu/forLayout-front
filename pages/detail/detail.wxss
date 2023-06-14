@@ -1,5 +1,5 @@
 /* pages/detail/detail.wxss */
-.box{
+.totalbox{
   display:flex;
   flex-direction:column;
   flex-wrap: wrap;
@@ -13,7 +13,6 @@
   width:40%;
   box-sizing: border-box;
   background-color: gray;
-  /* text-align: center; */
   border:1rpx solid black;
   height:400rpx;
   display: flex;
@@ -38,6 +37,7 @@
   flex-direction: column;
   justify-content: center;
   box-sizing: border-box;
+  padding-left: 10rpx;
 }
 .otherMsg{
   width:100%;

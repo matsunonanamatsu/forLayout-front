@@ -3,7 +3,7 @@
 <!-- <view>虽然这里什么都没有，但确实是
   <text style="color:red;font-weight: bold;">{{device_name}}</text>
 的界面</view> -->
-<view class="box">
+<view class="totalbox">
   <view class="photo">设备图片</view>
   <view class="normal">
     <view class="normalMsg">设备名称：{{deviceMsg.device_name}}</view>

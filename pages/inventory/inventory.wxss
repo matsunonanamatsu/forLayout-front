@@ -10,53 +10,49 @@
 }
 .checkBox{
   width:750rpx;
-  height:220rpx;
+  height:242rpx;
   display: flex;
-  margin-bottom:10rpx;
-
+}
+.checkBoxOut{
+  opacity: 0;
+  animation: backOutLeft 0.3s linear;
 }
 .allWidth{
   width:950rpx;
-  height:200rpx;
+  height:232rpx;
   display: flex;
   flex-wrap: nowrap;
-  justify-content: space-around;
-  /* padding:10rpx */
+  
 }
-.left{
+#left{
   width:750rpx;
-  height:200rpx;
+  height:232rpx;
   display:flex;
   border: 1rpx solid silver;
   box-shadow: gray 1rpx 1rpx 7rpx;
-  padding:10rpx;
+  padding:15rpx;
+  box-sizing: border-box;
 }
 .right {
   width:200rpx;
-  height:226rpx;
+  height:232rpx;
   display: flex;
 }
-button{
+.btn{
   border-radius: 0px;
-  line-height: 226rpx;
+  line-height: 232rpx;
   text-align: center;
+  width:50%;
 }
-.photo{
-  height:200rpx;
-  width:200rpx;
-  background-color:gray;
-  line-height: 200rpx;
-  text-align: center;
-}
-.info{
-  display: flex;
-  flex-direction: column;
-  justify-content: space-around;
-  margin-left: 20rpx;
-  font-size: 25rpx;
-  font-weight: bold;
-}
-.detail{
-  color:gray;
-  font-weight: lighter;
+@keyframes backOutLeft {
+  0% {
+    transform: scale(1);
+    opacity: 1;
+    height:224rpx;
+  }
+  100% {
+    transform: translateX(-950rpx) scale(0.1);
+    opacity: 0;
+    height:0rpx;
+  }
 }

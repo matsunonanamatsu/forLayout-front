@@ -11,8 +11,10 @@ Page({
 
   },
   matchDevice(){
+    // 匹配之前必须把前一次的deviceList清空，把page恢复成1(重要！！！)
     this.setData({
-      deviceList:[]
+      deviceList:[],
+      page:1
     })
     if(this.data.search_thing.length===0){
       return wx.showToast({

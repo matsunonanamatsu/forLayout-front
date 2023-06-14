@@ -6,25 +6,42 @@ Page({
     deviceList:[],
     okList:[],
     ngList:[],
-    doneCount:0
+    startX:0,
+    endX:0
   },
-
   ok(e){
     const targetIndex=e.target.dataset.index
-    const changeTarget="deviceList["+targetIndex+"].selected"
+    const changeSelected="deviceList["+targetIndex+"].selected"
+    const changeGetOut="deviceList["+targetIndex+"].getout"
+    // 先隐藏getout触发退场效果
     this.setData({
-      [changeTarget]:true,
+      [changeGetOut]:true,
       okList:[...this.data.okList,targetIndex],
       doneCount:this.data.doneCount+1
     })
+    // 再隐藏本体
+    setTimeout(()=>{
+      this.setData({
+        [changeSelected]:true
+      })
+    },250)
   },
   ng(e){
     const targetIndex=e.target.dataset.index
-    const changeTarget="deviceList["+targetIndex+"].selected"
+    const changeSelected="deviceList["+targetIndex+"].selected"
+    const changeGetOut="deviceList["+targetIndex+"].getout"
+    // 先隐藏getout触发退场效果
     this.setData({
-      [changeTarget]:true,
-      ngList:[...this.data.ngList,targetIndex]
+      [changeGetOut]:true,
+      ngList:[...this.data.ngList,targetIndex],
+      doneCount:this.data.doneCount+1
     })
+    // 再隐藏本体
+    setTimeout(()=>{
+      this.setData({
+        [changeSelected]:true
+      })
+    },300)
   },
 // 关闭弹窗
   onClose(){
@@ -33,6 +50,9 @@ Page({
     })
   },
   getAllDevice(e){
+    wx.setNavigationBarTitle({
+      title: e.detail+'盘点',
+    })
     utils.getAllDevice('area',e.detail)
     .then(
       (value)=>{
@@ -46,6 +66,49 @@ Page({
         })
       }
     )
+  },
+  // touchStart(e){
+  //   const idx=e.currentTarget.dataset.idx
+  //   const startX="deviceList["+idx+"].startX"
+  //   this.setData({
+  //     [startX]:e.changedTouches[0].pageX
+  //   })
+  // },
+  // touchEnd(e){
+  //   const idx=e.currentTarget.dataset.idx
+  //   const endX="deviceList["+idx+"].endX"
+  //   this.setData({
+  //     [endX]:e.changedTouches[0].pageX
+  //   })
+  //   // distance:end-start移动的距离
+  //   const distance=this.data.deviceList[idx].endX-this.data.deviceList[idx].startX
+  //   // position_x：为movable-view定位
+  //   const position_x="deviceList["+idx+"].position_x"
+  //   // 左拉30以上全显示
+  //   switch(true){
+  //     case (distance<=-30):
+  //       this.setData({[position_x]:-1000})
+  //       break;
+  //     case (distance>-30):
+  //       this.setData({[position_x]:0})
+  //       break;
+  //   }
+  // },
+  dragend(e){
+    const idx=e.target.dataset.idx
+        // distance:end-start移动的距离
+        const distance=e.detail.scrollLeft
+        // position_x：为movable-view定位
+        const position_x="deviceList["+idx+"].position_x"
+        // 左拉30以上全显示
+        switch(true){
+          case (distance<=50):
+            this.setData({[position_x]:-1000})
+            break;
+          case (distance>50):
+            this.setData({[position_x]:1000})
+            break;
+        }
   },
   onLoad(options) {
 
