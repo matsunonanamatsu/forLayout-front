@@ -1,22 +1,34 @@
-// pages/home/home.js
+const utils=require('../../utils/utils')
 Page({
-
-  /**
-   * 页面的初始数据
-   */
   data: {
-
+    fileList:[]
   },
-  waitMe(){
-    wx.showToast({
-      title: '功能开发中,敬请期待',
-      icon:'none'
-    })
+  downloadFile(e){
+    utils.downloadFile(e.target.dataset.filename).then(
+      (value)=>{},
+      (reason)=>{
+        return wx.showToast({
+          title: reason,
+          icon:'none'
+        })
+      }
+    )
   },
-  /**
-   * 生命周期函数--监听页面加载
-   */
   onLoad(options) {
+    utils.getFileList()
+    .then(
+      (value)=>{
+        this.setData({
+          fileList:value
+        })
+      },
+      (reason)=>{
+        return wx.showToast({
+          title: '获取列表失败，请重试',
+          icon:'none'
+        })
+      }
+    )
   },
 
   /**

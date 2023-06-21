@@ -1,0 +1,14 @@
+<block>
+  <view class="list">
+    <text class="itemHead">盘点时间</text>
+    <text class="itemHead">盘点人</text>
+    <text class="itemHead">盘点地点</text>
+    <text class="itemHead">下载文件</text>
+  </view>
+  <view class="list" wx:for="{{fileList}}" wx:key="id" >
+    <text class="itemBody">{{item.log_date}}</text>
+    <text class="itemBody">{{item.user}}</text>
+    <text class="itemBody">{{item.area}}</text>
+    <view class="itemBody"><button type="primary" size="mini" bindtap="downloadFile" data-filename="{{item.file_name}}">下载</button></view>
+  </view>
+</block>

@@ -7,19 +7,21 @@
   height:300rpx;
   justify-content: space-around;
 }
-.selected{
-  height:70rpx;
-  width:400rpx;
-  border:1rpx solid gray;
-  border-radius: 20rpx;
+.inputItem{
   display:flex;
+  flex-direction: row;
   align-items: center;
-  padding-left: 10rpx;
 }
 .down{
-  height:50rpx;
-  width:50rpx;
+  height:auto;
+  width:40rpx;
   margin-left:auto;
 }
-
+.search{
+  border:1rpx solid gray;
+  border-radius:10px;
+  padding:10rpx;
+  display:flex;
+  width:400rpx;
+}
 

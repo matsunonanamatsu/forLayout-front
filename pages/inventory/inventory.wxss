@@ -1,23 +1,32 @@
-.topArea{
+#status{
   top:0;
   width: 100%;
   position:sticky;
   z-index: 1;
-  background-color: white;
+  background-color: lightyellow;
+  width:100%;
   display: inline-flex;
   justify-content: space-around;
-  background-color: lightyellow;
+
 }
-.checkBox{
+#commit{
+  width:100%;
+  position:fixed;
+  bottom: 0px;
+  z-index: 1;
+  background-color: white;
+  margin:0;
+}
+#checkBox{
   width:750rpx;
   height:242rpx;
   display: flex;
 }
-.checkBoxOut{
+#checkBoxOut{
   opacity: 0;
   animation: backOutLeft 0.3s linear;
 }
-.allWidth{
+#allWidth{
   width:950rpx;
   height:232rpx;
   display: flex;
@@ -33,15 +42,17 @@
   padding:15rpx;
   box-sizing: border-box;
 }
-.right {
+#right {
   width:200rpx;
   height:232rpx;
   display: flex;
 }
 .btn{
   border-radius: 0px;
-  line-height: 232rpx;
-  text-align: center;
+  align-items: center;
+  display: inline-flex;
+  /* line-height: 232rpx;
+  text-align: center; */
   width:50%;
 }
 @keyframes backOutLeft {

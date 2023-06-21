@@ -1,19 +1,21 @@
 <!--pages/drag/drag.wxml-->
-<view>
-  <button size="mini" bindtap="toEdit" wx:if="{{disabled}}">进入编辑模式</button>
-  <button size="mini" type="primary" bindtap="exitEdit" wx:if="{{!disabled}}">保存并退出编辑</button>
-  <button size="mini" style="float:right" bindtap="addDevice" wx:if="{{!disabled}}">新增设备</button>
-  <movable-area style="width:{{wdWidth}}px;height:{{wdHeight}}px;">
-    <movable-view style="height:100rpx;width: 100rpx;"
-      class="item" bindchange="drag"  data-cid="{{item.id}}"
+<view id="btn">
+  <view><button size="mini" bindtap="toEdit" wx:if="{{!disabled}}">进入编辑模式</button></view>
+  <view><button size="mini" type="primary" bindtap="exitEdit" wx:if="{{disabled}}">保存并退出编辑</button></view>
+</view>
+<scroll-view style="width:100%;height:100%" scroll-x="true">
+  <movable-area id="mainArea" style="width:500px;height:700px;">
+    <movable-view
+      class="item"  data-cid="{{item.id}}"
       wx:for="{{list}}" wx:key="id"
-      x="{{item.x}}" y="{{item.y}}" disabled="{{disabled}}"  direction="all"
+      x="{{item.position_x}}" y="{{item.position_y}}" disabled="{{!disabled}}"  direction="all"
     >
-      <!-- <image style="height:100rpx;width:100rpx;background-color: {{item.selected? 'lightblue' : ''}};" src="{{item.img}}" ></image> -->
-      <view class="device" style="background-color: {{item.selected? 'lightblue':''}};">{{item.type}}</view>
+      <view class="device"  bindtouchstart="touchStart" bindtouchend="touchEnd" 
+      data-cid="{{item.id}}" data-idx="{{index}}"
+      style="background-color: {{item.selected? 'lightblue':''}};">{{index+1}}</view>
     </movable-view>
   </movable-area>
-</view>
+</scroll-view>
 <van-popup show="{{ show }}" bind:close="onClose" position="top">
   <msgbox bind:onClose="onClose"></msgbox>
 </van-popup>

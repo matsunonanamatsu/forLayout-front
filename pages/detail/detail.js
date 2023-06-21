@@ -19,7 +19,8 @@ Page({
     this.getThisOne()
   },
   getThisOne(){
-    utils.getAllDevice('id',this.data.device_id)
+    console.log(this.data)
+    utils.getAllDevice('id',this.data.device_id,'')
     .then(
       (value)=>{
         this.setData({
@@ -29,6 +30,7 @@ Page({
       (reason)=>{
         wx.showToast({
           title: '请求数据失败，响应代码：' +reason,
+          icon:'none'
         })
       }
     )

@@ -1,16 +1,14 @@
-/* pages/drag/drag.wxss */
-/* movable-area {
+
+#btn{
   width:100%;
-  height:100%;
-  border:1rpx solid silver;
-  background-color: lightyellow;
-} */
-/* .item{
-  width:100rpx;
-  height:100rpx;
-  background-color: skyblue;
-} */
-page{
+  height:50rpx;
+  position:fixed;
+  z-index:1;
+  bottom:0px;
+  background-color: white;
+}
+#mainArea{
+  border:1px solid black;
   background-color: lightyellow;
 }
 .device{

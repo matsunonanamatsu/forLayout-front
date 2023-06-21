@@ -5,7 +5,12 @@ App({
     const logs = wx.getStorageSync('logs') || []
     logs.unshift(Date.now())
     wx.setStorageSync('logs', logs)
-
+    // wx.getSystemInfo({
+    //   success:(res)=>{
+    //     app.globalData.deviceHeight=res.windowHeight
+    //     app.globalData.deviceWidth=res.windowWidth
+    //   }
+    // })
     // 登录
     wx.login({
       success: res => {

@@ -1,0 +1,23 @@
+.list{
+  width:100%;
+  display: inline-flex;
+  font-size:25rpx;
+  margin:0;
+}
+.itemHead{
+  width:25%;
+  height:70rpx;
+  line-height: 70rpx;
+  text-align: center;
+  margin:0;
+  font-weight: bold;
+  border:1rpx solid silver;
+}
+.itemBody{
+  display: flex;
+  align-items:center;
+  width:25%;
+  height:70rpx;
+  margin:0;
+  border:1rpx solid silver;
+}

@@ -1,10 +1,16 @@
 <view class="popbox">
-  <view>请选择职场：</view>
+  <view class="inputItem">
+    <text>请输入工号：</text>
+    <input bindinput="input" class="search" placeholder="例如：PM212017"></input>
+  </view>
+  <view class="inputItem">
+    <text>请选择职场：</text>
   <picker mode="multiSelector" value="{{multiIndex}}" range="{{areaList}}"
     bindcolumnchange="factoryChange" bindchange="areaChange">
-      <view class="selected">
+      <view class="search">
       <text>{{areaList[1][index] || '请选择'}}</text>
       <image class="down" src='/static/down.png'></image></view>
   </picker>
+</view>
   <button bindtap="getDevice" type="primary" size="mini">确认</button>
 </view>

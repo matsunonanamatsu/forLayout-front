@@ -7,4 +7,9 @@
 <navigator url="/pages/inventory/inventory">
   <view class="homeindex">固定资产盘点</view>
 </navigator>
-<view bindtap="waitMe" class="homeindex">查看布局图</view>
+<navigator url="/pages/results/results">
+  <view class="homeindex">固定资产盘点记录</view>
+</navigator>
+<navigator url="/pages/drag/drag">
+  <view class="homeindex">查看布局图</view>
+</navigator>

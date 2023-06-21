@@ -4,18 +4,25 @@
 </van-popup>
 
 <!-- 盘点状况区 -->
-<view class="topArea">
-  <text>盘点状况：{{okList.length+ngList.length}}/{{deviceList.length}}</text>
-  <text>正常设备：{{okList.length}}</text>
-  <text>异常设备：{{ngList.length}}</text>
+<view id="status">
+  <text>盘点人:{{user}}</text>
+  <text>进度:{{idList.length}}/{{count}}</text>
+  <text style="color:green">OK:{{okList.length}}</text>
+  <text style="color:red">NG:{{ngList.length}}</text>
 </view>
+<!-- 底部提交区 -->
+<view id="commit">
+    <button class="btn" bindtap="tempSave" size="mini" type="default" >临时保存</button>
+    <button class="btn" bindtap="save" size="mini" type="primary" >提交</button>
+</view>
+
 <!-- 滑滑乐区 -->
 <scroll-view scroll-x="true" enable-flex="true" show-scrollbar="{{false}}" enhanced="true" enable-passive="true"
   wx:for="{{deviceList}}" wx:key="id" data-idx="{{index}}"
   binddragend="dragend" scroll-left="{{item.position_x}}"
-  wx:if="{{!item.selected}}" class="{{!item.getout ? 'checkBox':'checkBoxOut'}}" 
+  hidden="{{item.selected}}" id="{{!item.getout ? 'checkBox':'checkBoxOut'}}" 
 >
-  <view class="allWidth">
+  <view id="allWidth">
     <view id="left">
       <navigator url="/pages/detail/detail?device_id={{item.id}}&device_name={{item.device_name}}"><view class='photo'>设备图片</view>
       </navigator>
@@ -27,9 +34,9 @@
         <view>折旧区间：<text class="detail">{{item.start_day}}~{{item.end_day}}</text></view>
       </view>
     </view>
-    <view class="right">
-      <button class="btn" type="primary" bindtap="ok"  data-index="{{index}}">OK</button>
-      <button class="btn" type="warn" bindtap="ng"  data-index="{{index}}">NG</button>
+    <view id="right">
+      <button class="btn" type="primary" bindtap="ok"  data-idx="{{index}}" data-id="{{item.id}}">OK</button>
+      <button class="btn" type="warn" bindtap="ng"  data-idx="{{index}}" data-id="{{item.id}}">NG</button>
     </view>
   </view>
 </scroll-view>

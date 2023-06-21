@@ -7,9 +7,7 @@ Page({
     page:1,
     count:0
   },
-  onLoad(options) {
-
-  },
+  //键盘搜索键or查询图标点击触发 
   matchDevice(){
     // 匹配之前必须把前一次的deviceList清空，把page恢复成1(重要！！！)
     this.setData({
@@ -65,6 +63,7 @@ Page({
       }
     )
   },
+  // 触底触发方法
   getDevice(){
     utils.getDevice(this.data.search_type,this.data.search_thing,this.data.page)
     .then(
@@ -108,8 +107,14 @@ Page({
     })
     this.getDevice()
   },
-  onReady() {
+  onLoad(options) {
 
+  },
+  // 设置顶部标题为固定资产查询
+  onReady() {
+    wx.setNavigationBarTitle({
+      title: '固定资产查询',
+    })
   },
 
   /**
