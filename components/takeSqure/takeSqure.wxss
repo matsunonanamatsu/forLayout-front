@@ -1,0 +1,20 @@
+.cameraArea{
+  height: 90%;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+}
+.btnArea{
+  display: flex;
+  flex-direction: row;
+  justify-content: center;
+}
+.btn{
+  z-index:100;
+  width:50px;
+  height:50px;
+  position:fixed;
+  bottom:50rpx;
+  background-color:white;
+  border-radius:50%;
+}

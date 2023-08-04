@@ -1,12 +1,12 @@
 <view class="areaTitle">2号工厂</view>
 <view class="selectedBox">
-  <navigator url="/pages/list/list?title={{item}}" class="areaItem" wx:for="{{areaArr2}}" wx:key="index">{{item}}</navigator>
+  <navigator url="/pages/{{pageTo}}/{{pageTo}}?title={{item}}" class="areaItem" wx:for="{{areaArr2}}" wx:key="index">{{item}}</navigator>
 </view>
 <view class="areaTitle">3号工厂</view>
 <view class="selectedBox">
-  <navigator url="/pages/list/list?title={{item}}" class="areaItem" wx:for="{{areaArr3}}" wx:key="index">{{item}}</navigator>
+  <navigator url="/pages/{{pageTo}}/{{pageTo}}?title={{item}}" class="areaItem" wx:for="{{areaArr3}}" wx:key="index">{{item}}</navigator>
 </view>
 <view class="areaTitle">5号工厂</view>
 <view class="selectedBox">
-  <navigator url="/pages/list/list?title={{item}}" class="areaItem" wx:for="{{areaArr5}}" wx:key="index">{{item}}</navigator>
+  <navigator url="/pages/{{pageTo}}/{{pageTo}}?title={{item}}" class="areaItem" wx:for="{{areaArr5}}" wx:key="index">{{item}}</navigator>
 </view>

@@ -4,15 +4,12 @@ Page({
     deviceList:[],
     search_type:'sap_number',
     search_thing:'',
-    page:1,
     count:0
   },
   //键盘搜索键or查询图标点击触发 
   matchDevice(){
-    // 匹配之前必须把前一次的deviceList清空，把page恢复成1(重要！！！)
     this.setData({
-      deviceList:[],
-      page:1
+      deviceList:[]
     })
     if(this.data.search_thing.length===0){
       return wx.showToast({
@@ -46,7 +43,7 @@ Page({
         })
       }
     )
-    await utils.getDevice(this.data.search_type,this.data.search_thing,this.data.page)
+    await utils.getDevice(this.data.search_type,this.data.search_thing,1)
     .then(
       (value)=>{
         this.setData({
@@ -64,8 +61,8 @@ Page({
     )
   },
   // 触底触发方法
-  getDevice(){
-    utils.getDevice(this.data.search_type,this.data.search_thing,this.data.page)
+  getDevice(page){
+    utils.getDevice(this.data.search_type,this.data.search_thing,page)
     .then(
       (value)=>{
         this.setData({
@@ -96,16 +93,14 @@ Page({
   },
   // 触底请求下一个10条
   onReachBottom(){
-    if(this.data.page>=this.data.count/10){
+    const page=Math.ceil(this.data.deviceList.length/10)
+    if(page>=this.data.count/10){
       return wx.showToast({
         title: '已经到底啦',
         icon:'none'
       })
     }
-    this.setData({
-      page:this.data.page+1
-    })
-    this.getDevice()
+    this.getDevice(page+1)
   },
   onLoad(options) {
 

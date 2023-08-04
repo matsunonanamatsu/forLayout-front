@@ -9,10 +9,13 @@
   align-content: space-around; */
   height:400rpx;
 }
+.item{
+  overflow: auto;
+}
 .photo{
-  width:40%;
+  width:50%;
   box-sizing: border-box;
-  background-color: gray;
+  /* background-color: gray; */
   border:1rpx solid black;
   height:400rpx;
   display: flex;
@@ -22,7 +25,7 @@
 }
 .normal{
   font-size: 30rpx;
-  width:60%;
+  width:50%;
   display:flex;
   height: 400rpx;
   flex-direction: column;
@@ -45,4 +48,23 @@
   border:1rpx solid black;
   box-sizing: border-box;
   border-top:none;
+}
+.detailArea{
+  width:750rpx;
+  display:flex;
+  flex-wrap: wrap;
+  flex-direction: row;
+  justify-content: space-around;
+  border:1px solid black;
+  margin-top:10rpx;
+}
+.detailBox{
+  width:350rpx;
+  height:400rpx;
+  display: flex;
+  flex-direction: column;
+}
+.detailImg{
+  width:100%;
+  line-height: 100%;
 }

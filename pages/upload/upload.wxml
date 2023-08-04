@@ -1,0 +1,58 @@
+<!-- 步骤展示区 -->
+<view class="stepArea">
+  <view class="stepBox" wx:for="{{stepList}}" wx:key="id">
+    <view class="stepId" style="background-color: {{item.id === step ? 'rgb(70, 129, 196)' : 'rgb(120, 198, 250)'}};height: {{item.id===step ? '100rpx' :'60rpx'}};width: {{item.id===step ? '100rpx' :'60rpx'}}">
+      <text style="line-height: {{item.id===step?'100rpx' :'60rpx'}};font-weight: {{item.id===step?'bolder' :'normal'}};">{{item.id}}</text>
+    </view>
+    <view class="stepContent">
+      <text style="line-height: {{item.id===step?'100rpx' :'60rpx'}};font-weight: {{item.id===step?'bolder' :'normal'}};">{{item.content}}</text>
+    </view>
+  </view>
+</view>
+<!-- step1 固资查询区 -->
+<view wx:if="{{step===1}}">
+  <view class="msgbox">
+    <view class="input">
+      <input placeholder="请输入固定资产编号" bindinput="setInput" confirm-type="go" bindconfirm="matchDevice"/>
+      <icon type="search" bindtap="matchDevice" class="picture" style="margin-left: auto;"></icon>
+    </view>
+    <view>
+      <view>固资编号：{{deviceMsg.sap_number}}</view>
+      <view>固资名称：{{deviceMsg.device_name}}</view>
+      <view>放置场所：{{deviceMsg.area}}</view>
+      <view>设备照片（当前）:</view>
+      <!-- <image mode="heightFix" hidden="{{!deviceMsg.sap_number}}" src="http://192.168.0.178:5003/picture/getImg?sap_number={{deviceMsg.sap_number}}" style="height:400rpx;"></image> -->
+      <image mode="heightFix" hidden="{{!deviceMsg.sap_number}}" src="https://www.matsunonanamatsu.top/picture/getImg?sap_number={{deviceMsg.sap_number}}" style="height:400rpx;"></image>
+    </view>
+  </view>
+  <button class="btn" type="primary" bindtap="gotoNext">确认是该设备，进入下一个步骤</button>
+</view>
+<!-- step2 上传4图片区 -->
+<view class="uploadArea" wx:if="{{step===2}}">
+  <view wx:for="{{uploadList}}" wx:key="index">
+    <view hidden="{{index===4}}" class="uploadBox">
+      <text>{{item.title}}<text hidden="{{index===2}}" style="color:red">*</text>:</text>
+      <image class='pic' src="{{item.picSrc}}" bindtap="showCamera" data-idx="{{index}}"></image>
+    </view>
+  </view>
+  <button class="btn" type="primary" bindtap="gotoNext">确认上传，进入下一个步骤</button>
+</view>
+<!-- step3 上传正面照区 -->
+<view class="uploadArea" wx:if="{{step===3}}">
+    <!--  -->
+    <view style="margin: 20rpx;">
+      <text>请上传设备正面照片<text style="color:red">*</text>：</text>
+      <image class='pic' src="{{uploadList[4].picSrc}}" bindtap="showCamera" data-idx="4"></image>
+    </view>
+    <!-- 拍照组件 -->
+    <view>
+    </view>
+    <!-- <camera device-position="back" flash="off" style="width: 750rpx; height:750rpx;"></camera> -->
+  <button class="btn" type="primary" bindtap="gotoNext">确认提交</button>
+</view>
+
+<takeSqure 
+  wx:if="{{camera}}"
+  style="z-index:999;position:fixed;top:0;left:0;width:100%;height:100%"
+  bind:showPhoto="showPhoto" bind:hideCamera="hideCamera" now_idx="{{now_idx}}"
+></takeSqure>

@@ -1,5 +1,5 @@
 <!-- 页面初始选择区 -->
-<van-popup show="{{ show }}" bind:close="onClose" position="top">
+<van-popup show="{{ show }}" position="top">
   <selectArea bind:getAllDevice="getAllDevice" bind:onClose="onClose"></selectArea>
 </van-popup>
 
@@ -19,24 +19,25 @@
 <!-- 滑滑乐区 -->
 <scroll-view scroll-x="true" enable-flex="true" show-scrollbar="{{false}}" enhanced="true" enable-passive="true"
   wx:for="{{deviceList}}" wx:key="id" data-idx="{{index}}"
-  binddragend="dragend" scroll-left="{{item.position_x}}"
+  binddragend="dragend" scroll-left="{{item.posX}}"
   hidden="{{item.selected}}" id="{{!item.getout ? 'checkBox':'checkBoxOut'}}" 
 >
   <view id="allWidth">
     <view id="left">
-      <navigator url="/pages/detail/detail?device_id={{item.id}}&device_name={{item.device_name}}"><view class='photo'>设备图片</view>
+      <navigator url="/pages/detail/detail?device_id={{item.id}}&device_name={{item.device_name}}">
+        <image src="https://www.matsunonanamatsu.top/picture/getImg?sap_number={{item.sap_number}}" mode="" class="photo"/>
+        <!-- <image src="http://192.168.0.178:5001/getImg?sap_number={{item.sap_number}}" mode="" class="photo"/> -->
       </navigator>
       <view class="info">
         <view>{{index+1}}. <text class="detail">{{item.device_name}}</text></view>
         <view>SAP编号：<text class="detail">{{item.sap_number}}</text></view>
         <view>设备类型：<text class="detail">{{item.device_type}}</text></view>
-        <view>入账价值：<text class="detail">{{item.device_value}}元</text></view>
         <view>折旧区间：<text class="detail">{{item.start_day}}~{{item.end_day}}</text></view>
       </view>
     </view>
     <view id="right">
-      <button class="btn" type="primary" bindtap="ok"  data-idx="{{index}}" data-id="{{item.id}}">OK</button>
-      <button class="btn" type="warn" bindtap="ng"  data-idx="{{index}}" data-id="{{item.id}}">NG</button>
+      <button class="btn" type="primary" bindtap="ok" disabled="{{item.getout}}" data-idx="{{index}}" data-id="{{item.id}}">OK</button>
+      <button class="btn" type="warn" bindtap="ng" disabled="{{item.getout}}"  data-idx="{{index}}" data-id="{{item.id}}">NG</button>
     </view>
   </view>
 </scroll-view>

@@ -1,5 +1,21 @@
-const baseUrl='https://www.matsunonanamatsu.top/'
+const baseUrl='https://www.matsunonanamatsu.top/device/'
 // const baseUrl='http://192.168.0.178:5001/'
+// 拉取detail中的信息
+function getMsg(){
+  return new Promise((resolve,reject)=>{
+    wx.request({
+      url: baseUrl+'getMsg',
+      method:'GET',
+      success:(res)=>{
+        resolve(res.data)
+      },
+      fail:(err)=>{
+        reject()
+      }
+    })
+  })
+}
+// 近似匹配-触底更新用
 function getDevice(search_type,search_thing,page){
   return new Promise((resolve,reject)=>{
     wx.showLoading({
@@ -29,7 +45,7 @@ function getDevice(search_type,search_thing,page){
     })
   })
 }
-
+// 拉取总数
 function getCount(search_type,search_thing){
   return new Promise((resolve,reject)=>{
     wx.showLoading({
@@ -58,8 +74,8 @@ function getCount(search_type,search_thing){
     })
   })
 }
-
-function getAllDevice(search_type,search_thing,without){
+// 匹配全设备-渲染盘点页面用
+function getAllDevice(search_type,search_thing,without,page){
   return new Promise((resolve,reject)=>{
     wx.showLoading({
       title: '数据请求中'
@@ -70,7 +86,8 @@ function getAllDevice(search_type,search_thing,without){
       data:{
         search_type:search_type,
         search_thing:search_thing,
-        without:without
+        without:without,
+        page:page
       },
       success:(res)=>{
         if(res.statusCode>=200 && res.statusCode<300){
@@ -88,6 +105,7 @@ function getAllDevice(search_type,search_thing,without){
     })
   })
 }
+// 向后端提交盘点结果
 function postResults(area,user,okList,ngList){
   return new Promise((resolve,reject)=>{
     wx.showLoading({
@@ -118,6 +136,7 @@ function postResults(area,user,okList,ngList){
     })
   })
 }
+// 拉取盘点结果文件列表
 function getFileList(){
   return new Promise((resolve,reject)=>{
     wx.showLoading({
@@ -143,20 +162,7 @@ function getFileList(){
   })
 
 }
-// function getFile(filename){
-//   return new Promise((resolve,reject)=>{
-//     wx.request({
-//       url: baseUrl+'getFile'+'/static/'+filename,
-//       method:'GET',
-//       data:{
-//         filename:filename
-//       },
-//       complete:(res)=>{
-//         resolve()
-//       }
-//     })
-//   })
-// }
+// 下载盘点结果文件
 function downloadFile(filename){
   return new Promise((resolve,reject)=>{
     wx.showLoading({
@@ -185,6 +191,7 @@ function downloadFile(filename){
   })
 
 }
+// 拉取位置信息
 function getPosition(area){
   return new Promise((resolve,reject)=>{
     wx.showLoading({
@@ -211,6 +218,7 @@ function getPosition(area){
   })
 
 }
+// 提交位置信息
 function setPosition(sendList){
   return new Promise((resolve,reject)=>{
     wx.showLoading({
@@ -237,6 +245,7 @@ function setPosition(sendList){
   })
 }
 module.exports={
+  getMsg:getMsg,
   getDevice:getDevice,
   getCount:getCount,
   getAllDevice:getAllDevice,

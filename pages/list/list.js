@@ -1,11 +1,9 @@
-// pages/list/list.js
 const utils=require('../../utils/utils')
 Page({
   data: {
     search_thing:'',
     count:0,
     deviceList:[],
-    page:1
   },
   onLoad(options) {
     this.setData({
@@ -37,7 +35,8 @@ Page({
         })
       }
     )
-    await utils.getDevice('area',this.data.search_thing,this.data.page)
+    // 首次拉取page=1
+    await utils.getDevice('area',this.data.search_thing,1)
     .then(
       (value)=>{
         this.setData({
@@ -54,8 +53,8 @@ Page({
       }
     )
   },
-  getDevice(){
-    utils.getDevice('area',this.data.search_thing,this.data.page)
+  getDevice(page){
+    utils.getDevice('area',this.data.search_thing,page)
     .then(
       (value)=>{
         this.setData({
@@ -71,21 +70,20 @@ Page({
     )
   },
   onReachBottom(){
-    if(this.data.count<=10) return
-    if(this.data.page>=this.data.count/10){
+    // 触底拉取时page为当前页数+1
+    const page=Math.ceil(this.data.deviceList.length/10)
+    // if(this.data.count<=10) return
+    if(page>=this.data.count/10){
       return wx.showToast({
         title: '已经到底啦',
         icon:'none'
       })
     }
-    this.setData({
-      page:this.data.page+1
-    })
-    this.getDevice()
+    this.getDevice(page+1)
   },
   onReady() {
     wx.setNavigationBarTitle({
-      title: this.data.title
+      title: this.data.search_thing
     })
   },
 

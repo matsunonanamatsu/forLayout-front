@@ -1,11 +1,11 @@
-// pages/home/home.js
+const utils=require('../../utils/utils')
 Page({
 
   /**
    * 页面的初始数据
    */
   data: {
-
+    msg:[]
   },
   waitMe(){
     wx.showToast({
@@ -17,6 +17,18 @@ Page({
    * 生命周期函数--监听页面加载
    */
   onLoad(options) {
+    utils.getMsg()
+    .then(
+      (value)=>{
+        let newVal=[]
+        value.forEach((item)=>{
+          newVal.push(item.replace(/\\n/g,'\n'))
+        })
+        this.setData({
+          msg:newVal
+        })
+      }
+    )
   },
 
   /**

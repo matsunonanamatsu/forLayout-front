@@ -1,15 +1,48 @@
-<navigator url="/pages/search/search">
-  <view class="homeindex">直接查找</view>
-</navigator>
-<navigator url="/pages/index/index">
-  <view class="homeindex">按职场分类</view>
-</navigator>
-<navigator url="/pages/inventory/inventory">
-  <view class="homeindex">固定资产盘点</view>
-</navigator>
-<navigator url="/pages/results/results">
-  <view class="homeindex">固定资产盘点记录</view>
-</navigator>
-<navigator url="/pages/drag/drag">
-  <view class="homeindex">查看布局图</view>
-</navigator>
+<swiper class="swiper" autoplay indicator-dots>
+  <swiper-item class="item" style="background-color: lightgray;"><text>{{msg[0]}}</text></swiper-item>
+  <swiper-item class="item" style="background-color: rgb(98, 161, 182);"><text>{{msg[1]}}</text></swiper-item>
+  <swiper-item class="item" style="background-color: white;"><text>{{msg[2]}}</text></swiper-item>
+</swiper>
+<view class="title">查找</view>
+<view class="navigations">
+  <navigator url="/pages/search/search" class="homeindex">
+    <image class="img" src="/static/search1.png"/>
+    <text class="text">直接搜索</text>
+  </navigator>
+  <navigator url="/pages/index/index?type=list" class="homeindex">
+    <image class="img" src="/static/formlist.png" mode=""/>
+    <text class="text">按职场查看</text>
+  </navigator>
+</view>
+<view class="title">盘点</view>
+<view class="navigations">
+  <navigator url="/pages/inventory/inventory" class="homeindex">
+    <image class="img" src="/static/status.png" mode=""/>
+    <text class="text">固定资产盘点</text>
+  </navigator>
+  <navigator url="/pages/results/results" class="homeindex">
+    <image class="img" src="/static/list1.png" mode=""/>
+    <text class="text">固定资产盘点记录</text>
+  </navigator>
+  <navigator url="/pages/upload/upload" class="homeindex">
+    <image class="img" src="/static/camera.png" mode=""/>
+    <text class="text">固定资产拍照上传</text>
+  </navigator>
+</view>
+
+<view class="title">其他功能</view>
+<view class="navigations">
+  <navigator url="/pages/index/index?type=layout" class="homeindex">
+    <image class="img" src="/static/position1.png" mode=""/>
+    <text class="text">查看布局图</text>
+  </navigator>
+  <!-- <view class="homeindex" bindtap="waitMe">
+    <image class="img" src="/static/position1.png" mode=""/>
+    <text class="text">查看布局图</text>
+  </view> -->
+  <view class="homeindex" bindtap="waitMe">
+    <image class="img" src="/static/more.png" mode=""/>
+    <text class="text">其他功能开发中...</text>
+  </view>
+</view>
+

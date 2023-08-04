@@ -1,16 +1,16 @@
-// pages/inventory/inventory.js
 const utils=require('../../utils/utils')
 Page({
   data: {
     show:true,
     user:'',
     area:'',
-    count:0,
+    count:0,//所有数量
+    tempCount:0,//继续盘点时之前盘点的数量
+    AlldeviceList:[],
     deviceList:[],
     okList:[],
     ngList:[],
-    idList:[],
-    tempArea:[]
+    idList:[]
   },
   // ok时直接记入okList
   ok(e){
@@ -29,6 +29,10 @@ Page({
         [changeSelected]:true
       })
     },250)
+    // 如果此时页面数据不足10条则addRest
+    if(this.data.idList.length-this.data.tempCount+10>=this.data.deviceList.length){
+      this.addRest()
+    }
   },
   // ng时调用弹出层询问ng原因
   askWhy(){
@@ -63,6 +67,10 @@ Page({
             [changeSelected]:true
           })
         },250)
+        // 如果页面剩余小于10
+        if(this.data.idList.length+10>=this.data.deviceList.length){
+          this.addRest()
+        }
       }
     )
     
@@ -90,11 +98,11 @@ Page({
                   wx.getStorage({
                     key:'pd'+area,
                     success:(res)=>{
-                      console.log('缓存内容',res.data)
                       this.setData({
                         okList:res.data[0],
                         ngList:res.data[1],
-                        idList:res.data[2]
+                        idList:res.data[2],
+                        tempCount:res.data[2].length
                       })
                       resolve('请继续盘点')
                     },
@@ -110,6 +118,18 @@ Page({
       })
     })
   },
+  // 触底或页面不足10个时满上
+  addRest(){
+    return new Promise((resolve,reject)=>{
+      // 如果所有数据已经被渲染则return
+      if(this.data.deviceList.length>=this.data.count-this.data.tempCount) return resolve()
+      const where=this.data.deviceList.length/30
+      this.setData({
+        deviceList:[...this.data.deviceList,...this.data.AlldeviceList[where]]
+      })
+      resolve()
+    })
+  },
   // 临时缓存目前进度
   tempSave(){
     wx.setStorage({
@@ -123,8 +143,8 @@ Page({
   },
   // 向后端提交本次所有结果
   save(){
-    // 盘点数小于设备总数或deviceList未加载时提示不可提交并return
-    if(this.data.idList.length<this.data.count || this.data.deviceList.length===0){
+    // 盘点数小于设备总数时提示不可提交并return
+    if(this.data.idList.length<this.data.count){
       return wx.showToast({
         title: '盘点未完成，不可提交',
         icon:'none'
@@ -156,7 +176,7 @@ Page({
       }
     )
   },
-// 关闭弹窗
+  // 关闭弹窗
   onClose(){
     this.setData({
       show:false
@@ -171,6 +191,7 @@ Page({
       area:area,
       user:user
     })
+    // 动态设置页面标题
     wx.setNavigationBarTitle({
       title: area+'盘点',
     })
@@ -208,13 +229,20 @@ Page({
     await utils.getAllDevice('area',area,this.data.idList)
     .then(
       (value)=>{
+        // 将数据划分为几个长度为30的数组
+        let deviceArr=[]
+        for(let i=0;i<=value.length/30;i++){
+          deviceArr.push(value.slice(i*30,(i+1)*30))
+        }
         this.setData({
-          deviceList:value
+          AlldeviceList:deviceArr,
+          deviceList:deviceArr[0]//初始仅展示第一个数组
         })
       },
       (reason)=>{
         return wx.showToast({
           title: '数据请求失败，响应代码：'+reason,
+          icon:'none'
         })
       }
     )
@@ -225,16 +253,22 @@ Page({
       // distance:end-start移动的距离
       const distance=e.detail.scrollLeft
       // posX：为movable-view定位
-      const position_x="deviceList["+idx+"].position_x"
+      const posX="deviceList["+idx+"].posX"
       // 左拉30以上全显示
       switch(true){
         case (distance<=50):
-          this.setData({[position_x]:-1000})
+          this.setData({[posX]:-1000})
           break;
         case (distance>50):
-          this.setData({[position_x]:1000})
+          this.setData({[posX]:1000})
           break;
         }
+  },
+// 触底+30条
+  onReachBottom() {
+    // 如果所有数据都已加载完毕则return
+    if(this.data.deviceList.length>=this.data.count-this.data.tempCount) return
+    this.addRest()
   },
   onLoad(options) {
     // 退出时询问
@@ -265,12 +299,6 @@ Page({
 
   },
 
-  /**
-   * 页面上拉触底事件的处理函数
-   */
-  onReachBottom() {
-
-  },
 
   /**
    * 用户点击右上角分享

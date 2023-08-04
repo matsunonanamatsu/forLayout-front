@@ -19,7 +19,6 @@ Page({
     this.getThisOne()
   },
   getThisOne(){
-    console.log(this.data)
     utils.getAllDevice('id',this.data.device_id,'')
     .then(
       (value)=>{
@@ -41,7 +40,16 @@ Page({
       title: this.data.device_name
     })
   },
-
+  toLayout(){
+    wx.navigateTo({
+      url: `/pages/layout/layout?sap_number=${this.data.deviceMsg.sap_number}&title=${this.data.deviceMsg.area}`,
+    })
+  },
+  preview(e){
+    wx.previewImage({
+      urls: [`https://www.matsunonanamatsu.top/picture/getDetailImg?sap_number=${e.target.dataset.sap_number}&which=${e.target.dataset.which}`],
+    })
+  },
   /**
    * 生命周期函数--监听页面显示
    */

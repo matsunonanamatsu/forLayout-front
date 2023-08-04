@@ -8,7 +8,6 @@
 .photo{
   height:200rpx;
   width:200rpx;
-  background-color:gray;
   line-height: 200rpx;
   text-align: center;
 }

@@ -1,9 +1,43 @@
+.swiper{
+  width:750rpx;
+  height:300rpx;
+  margin-bottom: 30rpx;
+}
+.item{
+  border:1rpx solid black;
+  box-sizing: border-box;
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: center;
+  align-items: center;
+}
+.title{
+  border:1rpx solid black;
+  background-color:rgb(98, 161, 182);
+  padding:20rpx;
+}
+.navigations{
+  font-size: 25rpx;
+  display: flex;
+  flex-direction:row;
+  flex-wrap: wrap;
+  width:750rpx;
+}
 .homeindex{
-  height:200rpx;
-  line-height: 200rpx;
-  text-align: center;
-  border:1rpx solid gray;
-  margin-top:20rpx;
-  box-shadow:gray 1rpx 1rpx 10rpx;
-  background-color: beige;
+  display: flex;
+  flex-direction:column;
+  width:230rpx;
+  height:230rpx;
+  justify-content: space-around;
+  align-items:center;
+  border:1rpx solid black;
+  box-sizing: border-box;
+  border-radius: 10rpx;
+  margin:10rpx;
+  padding:10rpx;
+  background-color: silver;
+}
+.img{
+  width:100rpx;
+  height:100rpx;
 }

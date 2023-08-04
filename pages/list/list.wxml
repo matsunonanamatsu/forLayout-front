@@ -1,11 +1,14 @@
 <!--pages/list/list.wxml-->
 <view class="box" wx:for="{{deviceList}}" wx:key="id">
-  <navigator url="/pages/detail/detail?device_id={{item.id}}&device_name={{item.device_name}}"><view class='photo'>设备图片</view></navigator>
+  <navigator url="/pages/detail/detail?device_id={{item.id}}&device_name={{item.device_name}}">
+    <image src="https://www.matsunonanamatsu.top/picture/getImg?sap_number={{item.sap_number}}" mode="" class="photo"/>
+    <!-- <image src="http://192.168.0.178:5001/getImg?sap_number={{item.sap_number}}" mode="" class="photo"/> -->
+  </navigator>
   <view class="info">
     <view>{{index+1}}. <text class="detail">{{item.device_name}}</text></view>
     <view>SAP编号：<text class="detail">{{item.sap_number}}</text></view>
     <view>设备类型：<text class="detail">{{item.device_type}}</text></view>
-    <view>入账价值：<text class="detail">{{item.device_value}}元</text></view>
+    <!-- <view>入账价值：<text class="detail">{{item.device_value}}元</text></view> -->
     <view>折旧区间：<text class="detail">{{item.start_day}}~{{item.end_day}}</text></view>
     <view>存放地点：<text class="detail">{{item.area}}</text></view>
   </view>

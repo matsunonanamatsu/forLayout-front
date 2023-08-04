@@ -1,0 +1,27 @@
+<scroll-view style="width:100%;height:100%" scroll-x="true" scroll-y="true">
+  <view style="height:{{areaSize[0].height/2}}px;width:{{areaSize[0].width/2}}px; border:2px solid black;">
+    <!-- 设备区 -->
+    <view class="device" wx:for="{{deviceList}}" wx:key="id" 
+       style="left:{{item.position_x/2}}px;top:{{item.position_y/2}}px;z-index:{{item.z_index}}">
+      <text class="number" style="color:{{item.pid!=='0'? 'red' : 'transparent'}}">{{item.pid}}</text>
+      <!-- <image mode="widthFix" src="http://192.168.0.178:5002/layout/getImg?type={{item.device_type}}" 
+      style="width:{{item.zoom+'%'}};rotate:{{item.direction+'deg'}};background-color: {{item.pid==thisDevice?'yellow':'transparent'}};"
+      bindlongpress="getMsg" data-sapNo="{{item.sap_number}}"></image> -->
+      <image mode="widthFix" src="https://www.matsunonanamatsu.top/layout/getImg?type={{item.device_type}}" 
+      style="width:{{item.zoom+'%'}};rotate:{{item.direction+'deg'}};background-color: {{item.sap_number===highLight ? 'yellow':'transparent'}};"
+      bindtap="getMsg" data-sapno="{{item.sap_number}}"></image>
+    </view>
+    <!-- 地标区 -->
+    <view wx:for="{{decorationList}}" wx:key="id" style="z-index:-1;position:absolute;border:1px solid black;left:{{item.position_x/2}}px;top:{{item.position_y/2}}px;width:{{item.zoom/2}}px;height:{{item.direction/2}}px"></view>
+    <!-- 设备信息展示区 -->
+    <view class="showBox" hidden="{{hidden}}" bindtap="closeBox">
+      <image src="https://www.matsunonanamatsu.top/picture/getImg?sap_number={{deviceNow.sap_number}}" class="img"></image>
+      <view class="message">
+        <view>SAP编号:{{ deviceNow.sap_number}}</view>
+        <view>固资名称:{{ deviceNow.device_name }}</view>
+        <view>车间:{{ deviceNow.area }}</view>
+        <view>设备类型:{{ deviceNow.device_type }}</view>
+      </view>
+    </view>
+  </view>
+</scroll-view>

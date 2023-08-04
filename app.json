@@ -3,11 +3,12 @@
     "pages/home/home",
     "pages/index/index",
     "pages/list/list",
-    "pages/drag/drag",
     "pages/detail/detail",
     "pages/search/search",
     "pages/inventory/inventory",
-    "pages/results/results"
+    "pages/results/results",
+    "pages/layout/layout",
+    "pages/upload/upload"
   ],
   "window": {
     "backgroundTextStyle": "light",
@@ -15,5 +16,6 @@
     "navigationBarTitleText": "固定资产台账",
     "navigationBarTextStyle": "black"
   },
-  "sitemapLocation": "sitemap.json"
+  "sitemapLocation": "sitemap.json",
+  "lazyCodeLoading": "requiredComponents"
 }
